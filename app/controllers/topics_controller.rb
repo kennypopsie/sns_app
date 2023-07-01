@@ -24,10 +24,9 @@ class TopicsController < ApplicationController
   end
  end 
  
- private
- def post_params
-  params.require(:topic).permit(:title, :body, :image)
- end 
+ 
+
+
  # def create
  #   redirect_to edit_post_path
  # end 
@@ -47,10 +46,10 @@ class TopicsController < ApplicationController
 
   def update
     @topic = Topic.find(params[:id])
-    if params[:post][:image]
-      @topic.image.attach(params[:post][:image])
-    end
-    if @topoc.update(post_params)
+    # if params[:post][:image]
+    #   @topic.image.attach(params[:post][:image])
+    # end
+    if @topic.update(post_params)
       redirect_to index_topic_path, notice: '更新しました'
     else
       render :edit, status: :unprocessable_entity
@@ -58,4 +57,17 @@ class TopicsController < ApplicationController
   end
   # ここまで
  
+  def destroy
+    @topic = Topic.find(params[:id])
+    @topic.destroy
+    redirect_to index_topic_path, notice: '削除しました'
+  end 
+  
+ 
+ 
+    private
+ def post_params
+  params.require(:topic).permit(:title, :body, :image)
+ end 
+  
 end

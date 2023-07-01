@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-8 mx-auto post-form-container">
       <h2 class="h2">スレッド編集</h2>
-      <%= form_with(url: update_topic_path, model: @topic, local: true, method: :post, html: { class: 'post-form' }) do |f| %>
+     <%= form_with(url: update_topic_path, model: @topic, local: true, method: :post, html: { class: 'post-form' }) do |f| %>
 
         <% if @topic.errors.any? %>
           <ul>
@@ -16,10 +16,13 @@
           <%= f.text_field :title, value: @topic.title, class: 'form-control' %>
         </div>
 
+  
         <div class="button-group">
-          <%= link_to '削除', destroy_post_path(@topic), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger" %>
+          <%= link_to '削除', destroy_topic_path(@topic), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger" %>
           <%= f.submit '更新', class: 'btn btn-primary' %>
         </div>
+      
+        
       <% end %>
     </div>
   </div>
