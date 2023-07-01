@@ -32,13 +32,30 @@ class TopicsController < ApplicationController
  #   redirect_to edit_post_path
  # end 
  
- def edit
-   render :edit
- end 
+ # def edit
+ #   render :edit
+ # end 
  
- def update
-   redirect_to 'topics/edit'
- end 
- 
+ # def update
+ #   redirect_to 'topics/edit'
+ # end 
+   # ここから追加
+  def edit
+    @topic = Topic.find(params[:id])
+    render :edit
+  end
+
+  def update
+    @topic = Topic.find(params[:id])
+    if params[:post][:image]
+      @topic.image.attach(params[:post][:image])
+    end
+    if @topoc.update(post_params)
+      redirect_to index_topic_path, notice: '更新しました'
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+  # ここまで
  
 end
