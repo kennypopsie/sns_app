@@ -24,8 +24,6 @@ class TopicsController < ApplicationController
   end
  end 
  
- 
-
 
  # def create
  #   redirect_to edit_post_path
@@ -57,6 +55,8 @@ class TopicsController < ApplicationController
   end
   # ここまで
  
+
+ 
   def destroy
     @topic = Topic.find(params[:id])
     @topic.destroy
@@ -64,10 +64,9 @@ class TopicsController < ApplicationController
   end 
   
  
- 
     private
- def post_params
+def post_params
   params.require(:topic).permit(:title, :body, :image)
- end 
+end 
   
 end
